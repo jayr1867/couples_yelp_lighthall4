@@ -17,10 +17,10 @@ app.get('/', (req, res) => {
     res.send('Hello World!');
 });
 
-app.get('/top-cuisine-restaurants', async (req, res) => {
-    const zip = req.body.zipcode;
-    const country = req.body.country;
-    const cuisine = req.body.cuisine;
+app.get('/top-cuisine-restaurants/:zipcode/:country/:cuisine', async (req, res) => {
+    const zip = req.params.zipcode;
+    const country = req.params.country;
+    const cuisine = req.params.cuisine;
     var headers = {
         "apikey": zip_codes,
         "Accept": "application/json"
