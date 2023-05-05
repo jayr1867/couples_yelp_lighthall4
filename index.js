@@ -14,8 +14,6 @@ const zip_codes = process.env.ZIPKEY
 const fusion = process.env.FUSION
 
 app.get('/', (req, res) => {
-    
-    
     res.send('Hello World!');
 });
 
@@ -34,16 +32,9 @@ app.get('/top-cuisine-restaurants', async (req, res) => {
         headers
     }).then((response) => {
         const val = Object.values(response.data.results)[0];
-        console.log(val[0].longitude, val[0].latitude)
         lat = val[0].latitude;
         long = val[0].longitude;
-        // res.status(201).json(
-        //     {
-        //         longitude: val[0].longitude, 
-        //         latitude: val[0].latitude
-        //     });
     }).catch((error) => {
-        // console.log(error);
         res.status(500).send(error);
         return;
     });
@@ -75,7 +66,6 @@ app.get('/top-cuisine-restaurants', async (req, res) => {
             params, 
             headers
         }).then((response) => {
-        console.log(response.data.businesses);
         res.status(201).json(response.data.businesses);
         return;
     }).catch((error) => {
